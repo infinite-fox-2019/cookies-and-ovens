@@ -1,13 +1,3 @@
-// Answer These Questions:
-//
-// - What are essential classes?
-// - What attributes will each class have?
-// - What interface will each class provide?
-// - How will the classes interact with each other?
-// - Which classes will inherit from others, if any?
-//
-//
-// Your code here
 class Cookies {
     constructor(name){
         this._name = name;
@@ -42,6 +32,7 @@ class Oven {
             }
             console.log(`${this._name._name},menit ke ${this._waktuAwal} : ${this._name._status}`);
         }
+        console.log(`Sudah selesai memanggang, ${this._name._name} yang kamu masak ${this._name._status}`)
     }
 } 
 const kueKacang = new Cookies("Kue kacang");
