@@ -58,11 +58,9 @@ class Cheese extends CookieOven{
 console.log('-- Masak kue Coklat Enak --');
 let chocolate = new Chocolate()
 chocolate.baking(25)
-console.log('\n');
-console.log('-- Masak kue Kacang Enak --');
+console.log('\n-- Masak kue Kacang Enak --');
 let peanut = new Peanut()
 peanut.baking(35)
-console.log('\n');
-console.log('-- Masak kue Keju Enak --');
+console.log('\n-- Masak kue Keju Enak --');
 let cheese = new Cheese()
 cheese.baking(40)
