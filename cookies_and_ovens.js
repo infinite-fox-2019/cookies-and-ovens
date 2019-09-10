@@ -1,66 +1,83 @@
-// Answer These Questions:
-//
-// - What are essential classes?
-// - What attributes will each class have?
-// - What interface will each class provide?
-// - How will the classes interact with each other?
-// - Which classes will inherit from others, if any?
-//
-//
-// Your code here
-class CookieOven{
-    constructor(){
-        this.name = 'Cookie'
-        this.status = 'mentah'
-        this.cookingTime = 0
-    }
+"use strict"
 
-    baking(time){
-        for(let i = 5; i <= time; i += 5){
-            if (i < this.cookingTime -10){
-                this.status = 'mentah'
-            }else if(i === this.cookingTime -5){
-                this.status = 'hampir matang'
-            }else if(i === this.cookingTime){
-                this.status = 'matang'
-            }else if(i > this.cookingTime){
-                this.status = 'hangus'
+class Cookie{
+    constructor(name){
+        
+        this._name = name
+        this._status = 0
+    }
+}
+
+class KueCokelat extends Cookie{
+    constructor(){
+        super('Kue cokelat')
+        this._cookTime = 20
+    }
+}
+
+class KueKacang extends Cookie{
+    constructor(){
+        super('Kue kacang')
+        this._cookTime = 30
+    }
+}
+
+class KueKeju extends Cookie{
+    constructor(){
+        super('Kue keju')
+        this._cookTime = 35
+    }
+}
+
+class CookieFactory{
+    constructor(){
+    }
+    static produce(cookieList){
+        let cookieArr = []
+        for(let i=0; i<cookieList.length; i++){
+            if(cookieList[i] === 'Kue cokelat'){
+                cookieArr.push(new KueCokelat())
             }
-            console.log(`${this.name}, menit ke ${i} : ${this.status}`)
+            else if(cookieList[i] === 'Kue kacang'){
+                cookieArr.push(new KueKacang())
+            }
+            else if(cookieList[i] === 'Kue keju'){
+                cookieArr.push(new KueKeju())
+            }
+        }
+        return cookieArr
+    }
+        
+}
+
+class Oven{
+    constructor(order){
+        this._order = order
+    }
+    bake(bakeTime){
+        var status = ['mentah','hampir matang','matang','hangus']
+        for(let i=0; i<=bakeTime; i+=5 ){
+            console.log(`Panggangan menit ke : ${i}`)
+            for(let j=0; j<this._order.length; j++){
+                let step = this._order[j]._cookTime / 2
+                if(i > this._order[j]._cookTime){
+                    this._order[j]._status = 3
+                }
+                else if(i/step >= this._order[j]._status){
+                    this._order[j]._status ++
+                }
+                let nowStatus = status[this._order[j]._status]
+                console.log(`${this._order[j]._name} ==> ${nowStatus}`)
+            }
+            console.log('===============================')
         }
     }
 }
 
-class Chocolate extends CookieOven{
-    constructor(){
-        super()
-        this.name = 'Kue Coklat'
-        this.cookingTime = 20
-    }
-}
+var list = ['Kue cokelat','Kue kacang','Kue keju']
+var order = CookieFactory.produce(list)
+console.log(order)
+console.log('------------------------')
 
-class Peanut extends CookieOven{
-    constructor(){
-        super()
-        this.name = 'Kue Kacang'
-        this.cookingTime = 30
-    }
-}
-
-class Cheese extends CookieOven{
-    constructor(){
-        super()
-        this.name = 'Kue Keju'
-        this.cookingTime = 35
-    }
-}
-
-console.log('-- Masak kue Coklat Enak --');
-let chocolate = new Chocolate()
-chocolate.baking(25)
-console.log('\n-- Masak kue Kacang Enak --');
-let peanut = new Peanut()
-peanut.baking(35)
-console.log('\n-- Masak kue Keju Enak --');
-let cheese = new Cheese()
-cheese.baking(40)
+let ovenCookie = new Oven(order)
+ovenCookie.bake(35)
