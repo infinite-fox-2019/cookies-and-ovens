@@ -8,7 +8,7 @@
 //
 //
 // Your code here
-class Cookie{
+class CookieOven{
     constructor(){
         this.name = 'Cookie'
         this.status = 'mentah'
@@ -29,28 +29,27 @@ class Cookie{
             console.log(`${this.name}, menit ke ${i} : ${this.status}`)
         }
     }
-
 }
 
-class Chocolate extends Cookie{
+class Chocolate extends CookieOven{
     constructor(){
-        // super()
+        super()
         this.name = 'Kue Coklat'
         this.cookingTime = 20
     }
 }
 
-class Peanut extends Cookie{
+class Peanut extends CookieOven{
     constructor(){
-        // super()
+        super()
         this.name = 'Kue Kacang'
         this.cookingTime = 30
     }
 }
 
-class Cheese extends Cookie{
+class Cheese extends CookieOven{
     constructor(){
-        // super()
+        super()
         this.name = 'Kue Keju'
         this.cookingTime = 35
     }
