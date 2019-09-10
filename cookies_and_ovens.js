@@ -26,26 +26,21 @@ class Kue{
 
 class Oven{
     static cook(cake) {
-        let time_raw = cake.time_raw
-        let time_almost_done = cake.time_almost_done
-        let time_done = cake.time_done
-        let time_overcooked = cake.time_overcooked
-        let status = ''
 
-        for (let i = 5; i <= time_overcooked; i += 5) {
-            if (i <= time_raw) {
-                status = 'mentah'
+        for (let i = 5; i <= cake.time_overcooked; i += 5) {
+            if (i <= cake.time_raw) {
+                cake.status = 'mentah'
             }
-            else if (i <= time_almost_done) {
-                status = 'hampir matang'
+            else if (i <= cake.time_almost_done) {
+                cake.status = 'hampir matang'
             }
-            else if (i <= time_done) {
-                status = 'matang'
+            else if (i <= cake.time_done) {
+                cake.status = 'matang'
             }
-            else if (i <= time_overcooked) {
-                status = 'hangus'
+            else if (i <= cake.time_overcooked) {
+                cake.status = 'hangus'
             }
-            console.log(`${cake.name}, menit ke ${i} : ${status}`)
+            console.log(`${cake.name}, menit ke ${i} : ${cake.status}`)
         }
     }
 }
