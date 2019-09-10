@@ -15,66 +15,55 @@
 //
 // Your code here
 
-class Kue{
-    constructor(name, time_needed) {
-        this.name = name
-        this.time_raw = time_needed - 10
-        this.time_almost_done = time_needed - 5
-        this.time_done = time_needed
-        this.time_overcooked = time_needed + 5
-        this.status
+class Oven {
+    constructor() {
+        this.cookies = [];
     }
 
-    statement() {
-        console.log(`${this.name} takes ${this.time} minutes`)
+    addCookies(cookie) {
+        this.cookies.push(cookie);
+        return this;
     }
-}
 
-class KueCoklat extends Kue {
-    constructor(name, time_needed) {
-        super(name, time_needed)
-    }
-}
-
-class KueKacang extends Kue {
-    constructor(name, time_needed) {
-        super(name, time_needed)
-    }
-}
-
-class KueKeju extends Kue {
-    constructor(name, time_needed) {
-        super(name, time_needed)
-    }
-}
-
-class Oven{
-    static cook(cake) {
-
-        for (let i = 5; i <= cake.time_overcooked; i += 5) {
-            if (i <= cake.time_raw) {
-                cake.status = 'mentah'
+    bake(time) {
+        for(let i = 0; i < this.cookies.length; i++) {
+            for(let j = 0; j < time; j += 5) {
+                if(j >= this.cookies[i].timeFinished + 5) {
+                    this.cookies[i].status = 'overcooked';
+                } else if(j >= this.cookies[i].timeFinished) {
+                    this.cookies[i].status = 'well done';
+                } else if(j >= this.cookies[i].timeFinished - 5) {
+                    this.cookies[i].status = 'almost done';
+                }
+                console.log(`${this.cookies[i].name} menit ke ${j} : ${this.cookies[i].status}`);
             }
-            else if (i <= cake.time_almost_done) {
-                cake.status = 'hampir matang'
-            }
-            else if (i <= cake.time_done) {
-                cake.status = 'matang'
-            }
-            else if (i <= cake.time_overcooked) {
-                cake.status = 'hangus'
-            }
-            console.log(`${cake.name}, menit ke ${i} : ${cake.status}`)
         }
     }
 }
 
+class Cookie {
+    constructor(name, timeFinished) {
+        this.name = name;
+        this.timeFinished = timeFinished;
+        this.status = 'raw';
+    }
+}
 
-const Kue_Coklat = new KueCoklat('Kue Coklat', 20)
-const Kue_Kacang = new KueKacang('Kue Kacang', 30)
-const Kue_Keju = new KueKeju('Kue Keju', 35)
-Oven.cook(Kue_Coklat)
-console.log(' ')
-Oven.cook(Kue_Kacang)
-console.log(' ')
-Oven.cook(Kue_Keju)
+class ChocolateCookie extends Cookie {
+    constructor() {
+        super('Choko', 10)
+    }
+}
+
+class CheeseCookie extends Cookie {
+    constructor() {
+        super('Cheez', 20)
+    }
+}
+
+let stove = new Oven();
+
+let goodTime = new ChocolateCookie();
+let ritz = new CheeseCookie();
+stove.addCookies(goodTime).addCookies(ritz);
+stove.bake(30);
