@@ -9,18 +9,17 @@
 //
 // Your code here
 
-
 class Oven {
   constructor() {
       this.cookies = []
   }
-  addCake(kue) {
+  addCake (kue) {
       this.cookies.push(kue)
   }
-  bake(time) {
+  bake (time) {
       for (let i=0; i<=time; i+=5) {
           for (let j=0; j<this.cookies.length; j++) {
-              this.cookies[j].time = i
+              this.cookies[j].waktu = i
               console.log(`${this.cookies[j].name}, menit ke ${i} : ${this.cookies[j].status}`);
               
           }
@@ -31,19 +30,19 @@ class Oven {
 class Cake {
   constructor (name, cookedTime) {
      this.name = name
-     this.time = 0
+     this.waktu = 0
      this.cookedTime = cookedTime
   }
   get status() {
-      if (this.time > this.cookedTime) {
+      if (this.waktu > this.cookedTime) {
           return "Hangus"
-      } else if (this.time === this.cookedTime) {
+      } else if (this.waktu === this.cookedTime) {
           return "Matang"
-      } else if (this.time === this.cookedTime - 5) {
+      } else if (this.waktu === this.cookedTime - 5) {
           return "Hampir Matang"
-      } else if (this.time < this.cookedTime - 10) {
+      } else if (this.waktu <= this.cookedTime - 10) {
           return "Mentah"
-      }else if (this.time < this.cookedTime - 5 && this.time >= 5) {
+      } else if (this.waktu < this.cookedTime - 5 && this.time >= 5) {
         return "Mentah"
     }
   }
@@ -75,8 +74,8 @@ const kueKacang = new Kacang()
 let oven = new Oven() 
 
 
-oven.addCake(kueCoklat)
+// oven.addCake(kueCoklat)
 // oven.addCake(kueKeju)
-// oven.addCake(kueKacang)
+oven.addCake(kueKacang)
 
 oven.bake(40)
