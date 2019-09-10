@@ -17,15 +17,20 @@ class Cookie {
     }
 
     get status(){
-        if (this.durationBaked > this.timesCooked){
+        let almostCooked = Math.floor(this.timesCooked-(this.timesCooked/4))
+        let halfCooked = Math.floor(this.timesCooked-(this.timesCooked/2))
+
+        if (this.durationBaked > this.timesCooked ){
             return 'overcook'
         } else if (this.durationBaked === this.timesCooked){
-            return 'perfect cook'
-        } else if (this.durationBaked < this.timesCooked-(this.timesCooked/2)){
-            return 'half cook'
-        } else if (this.durationBaked < 5){
+            return 'perfect cooked'
+        } else if (this.durationBaked <= almostCooked && this.durationBaked > halfCooked){
+            return 'almost cooked'
+        } else if (this.durationBaked <= halfCooked && this.durationBaked > 5){
+            return 'half cooked'
+        } else if (this.durationBaked <= 5){
             return 'raw'
-        }
+        } else return 'almost cooked'
     }
 }
 
@@ -38,7 +43,7 @@ class Oven{
     }
     bakeTime(time){
         for (let i=0; i<this.cookies.length; i++){
-            for (let j=0; j<time; j+=4){
+            for (let j=0; j<=time; j+=5){
                 this.cookies[i].durationBaked = j
                 console.log(`${this.cookies[i].name} is ${this.cookies[i].status} in ${j} min`)
             }
@@ -46,8 +51,8 @@ class Oven{
     }
 }
 
-const chocolateCookie = new Cookie('Chocolate Cookie', 15)
-const peanutCookie = new Cookie('Peanut Cookie', 30)
+const chocolateCookie = new Cookie('Chocolate Cookie', 30)
+const peanutCookie = new Cookie('Peanut Cookie', 25)
 const cheeseCokie = new Cookie('Cheese Cookie', 20)
 
 let oven = new Oven()
