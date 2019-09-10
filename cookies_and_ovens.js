@@ -1,10 +1,16 @@
 // Answer These Questions:
 //
 // - What are essential classes?
+//  Ans: Kue and Oven. The rest are optional.
 // - What attributes will each class have?
+//  Ans: Name, and time for each status.
 // - What interface will each class provide?
 // - How will the classes interact with each other?
+//  Ans: The oven class will receive all information and attributes of cakes,
+//      and determine the process flow of each cakes thus starting to cook.
 // - Which classes will inherit from others, if any?
+//  Ans: All types of cakes inherit the Cake master class.
+
 //
 //
 // Your code here
@@ -21,6 +27,24 @@ class Kue{
 
     statement() {
         console.log(`${this.name} takes ${this.time} minutes`)
+    }
+}
+
+class KueCoklat extends Kue {
+    constructor(name, time_needed) {
+        super(name, time_needed)
+    }
+}
+
+class KueKacang extends Kue {
+    constructor(name, time_needed) {
+        super(name, time_needed)
+    }
+}
+
+class KueKeju extends Kue {
+    constructor(name, time_needed) {
+        super(name, time_needed)
     }
 }
 
@@ -46,9 +70,9 @@ class Oven{
 }
 
 
-const Kue_Coklat = new Kue('Kue Coklat', 20)
-const Kue_Kacang = new Kue('Kue Kacang', 30)
-const Kue_Keju = new Kue('Kue Keju', 35)
+const Kue_Coklat = new KueCoklat('Kue Coklat', 20)
+const Kue_Kacang = new KueKacang('Kue Kacang', 30)
+const Kue_Keju = new KueKeju('Kue Keju', 35)
 Oven.cook(Kue_Coklat)
 console.log(' ')
 Oven.cook(Kue_Kacang)
