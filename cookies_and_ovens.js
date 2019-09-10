@@ -23,46 +23,57 @@ class Kue{
     constructor(name, menitMatang){
         this.name = name
         this.menitMatang = menitMatang
-        this.time = 0
+        this.status = 'mentah'
     }
+
 }
 
 class Coklat extends Kue{
     constructor(menitMatang){
         super('Kue Coklat', menitMatang)
-        this.status = 'mentah'
     }
 }
 
 class Kacang extends Kue{
     constructor(menitMatang){
         super('Kue Kacang', menitMatang)
-        this.status = 'mentah'
     }
 }
 
 class Keju extends Kue{
     constructor(menitMatang){
         super('Kue Keju', menitMatang)
-        this.status = 'mentah'
     }
 }
 
 class Oven{
-    bake(kue, time){
-        for(let i = 0; i<=time; i += 5){
-            kue.status = 'mentah';
-            if(i == kue.menitMatang){
-                kue.status = 'matang'
+    constructor(){
+        this.cookies  = []
+    }
+
+    addCookie(cookie){
+        this.cookies.push(cookie)
+        console.log(cookie.menitMatang);
+        
+    }
+    bake(time){
+        for(let i = 0; i<=time; i +=5){
+            let penampung = ''
+            for(let j = 0; j<this.cookies.length; j++){
+                if(i == this.cookies[j].menitMatang){
+                    this.cookies[j].status = 'matang'
+                }
+                else if(i >= this.cookies[j].menitMatang-5){
+                    this.cookies[j].status = 'hampir matang'
+                }
+                else if(i > this.cookies[j].menitMatang){
+                    this.cookies[j].status = 'gosong'
+                }
             }
-            else if(i>= kue.menitMatang-5 && i<kue.menitMatang){
-                kue.status = 'hampir matang'
+            for(let j = 0; j<this.cookies.length; j++){
+                penampung += `${this.cookies[j].name}, menit ke ${i}: ${this.cookies[j].status} \n`
             }
-            else if(i>kue.menitMatang){
-                kue.status = 'gosong'
-            }
-            console.log(`${kue.name}, menit ke ${i}: ${kue.status}`);
-            sleep(200);
+            console.log(penampung);
         }
     }
 }
@@ -71,4 +82,8 @@ let coklat = new Coklat(20);
 let keju = new Keju(35);
 let oven = new Oven();
 
-oven.bake(keju, 40)
+oven.addCookie(coklat);
+oven.addCookie(keju);
+
+
+oven.bake(20)
