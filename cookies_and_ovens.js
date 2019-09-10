@@ -108,6 +108,7 @@ class Oven {
         for (let i = 0; i < this._cookies.length; i++) {
             if (this._cookies[i].status === 'hangus') {
                 this._cookies.splice(i, 1)
+                i--
             }
         }
         for (let i = 0; i < this.kueHangus.length; i++) {
@@ -116,12 +117,13 @@ class Oven {
     }
 }
 
+//DRIVER CODE
 const oven = new Oven();
 const kueCoklat = new Chocolate('kue coklat');
 const kueKeju = new Cheese('kue keju');
 const kueKacang = new Peanut('kue kacang');
 
-oven.inputCookie(kueCoklat);
+oven.inputCookie(kueCoklat); // input kue kedalam oven
 oven.inputCookie(kueKeju);
 oven.inputCookie(kueKacang);
 
@@ -147,7 +149,7 @@ console.log('=========== status kue ===========');
 oven.showCookies();
 console.log('');
 
-oven.inputCookie(kueKeju);
+oven.inputCookie(kueKeju); // memasukan/menambahkan kue baru kedalam oven
 
 console.log('=========== status kue ketika dioven ===========');
 oven.bake(10)
@@ -161,3 +163,5 @@ console.log('');
 console.log('=========== kue yang hangus ===========');
 oven.rejectedCookies()
 console.log('');
+
+oven.showCookies()
