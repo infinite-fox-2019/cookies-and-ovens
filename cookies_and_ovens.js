@@ -92,6 +92,7 @@ class Oven {
         for (let i = 0; i < this._cookies.length; i++) {
             if (this._cookies[i].status === 'matang') {
                 this._cookies.splice(i, 1)
+                i--
             }
         }
         for (let i = 0; i < this.kueMatang.length; i++) {
@@ -163,5 +164,3 @@ console.log('');
 console.log('=========== kue yang hangus ===========');
 oven.rejectedCookies()
 console.log('');
-
-oven.showCookies()
