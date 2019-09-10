@@ -63,8 +63,8 @@ class Oven{
                 if(i == this.cookies[j].menitMatang){
                     this.cookies[j].status = 'matang'
                 }
-                else if(i >= this.cookies[j].menitMatang-5){
-                    this.cookies[j].status = 'hampir matang'
+                else if(i >= this.cookies[j].menitMatang-5 && i < this.cookies[j].menitMatang){
+                    this.cookies[j].status = 'hampir matang' 
                 }
                 else if(i > this.cookies[j].menitMatang){
                     this.cookies[j].status = 'gosong'
@@ -80,10 +80,11 @@ class Oven{
 let kacang = new Kacang(30);
 let coklat = new Coklat(20);
 let keju = new Keju(35);
+
 let oven = new Oven();
 
 oven.addCookie(coklat);
 oven.addCookie(keju);
 
 
-oven.bake(20)
+oven.bake(50)
