@@ -27,7 +27,6 @@ class Kue {
     display() { //For Release 0
         return `${this.name}, waktu memanggang di dalam oven ${this.waktu} menit`
     }
-
 }
 
 class Oven {
